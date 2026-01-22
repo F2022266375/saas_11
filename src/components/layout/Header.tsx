@@ -72,15 +72,9 @@ export const Header: React.FC<HeaderProps> = ({ title, subtitle, onMenuToggle })
 
         {/* User Info */}
         <div className="hidden lg:flex items-center gap-3 pl-3 border-l border-border">
-          <div className="text-right">
-            <p className="text-sm font-medium">{user?.name}</p>
-            <Badge variant="secondary" className="text-xs">
-              {user?.role === 'admin' ? 'Administrator' : 'Security Officer'}
-            </Badge>
-          </div>
-          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
-            <span className="text-sm font-semibold text-primary">
-              {user?.name?.charAt(0)}
+          <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center overflow-hidden">
+            <span className="text-[8px] font-semibold text-primary text-center leading-tight px-0.5">
+              {user?.name}
             </span>
           </div>
         </div>
