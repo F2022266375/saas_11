@@ -2,9 +2,8 @@ import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import { cn } from '@/lib/utils';
-import { LayoutDashboard, Video, AlertTriangle, FileText, FolderOpen, BarChart3, Settings, Shield, LogOut, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
+import { LayoutDashboard, Video, FileText, FolderOpen, Settings, Shield, LogOut, ChevronLeft, ChevronRight, Camera } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
 interface SidebarProps {
   collapsed: boolean;
   onToggle: () => void;
@@ -18,11 +17,6 @@ const navigationItems = [{
   icon: Video,
   label: 'Live Monitoring'
 }, {
-  path: '/alerts',
-  icon: AlertTriangle,
-  label: 'Alerts',
-  badge: 3
-}, {
   path: '/evidence',
   icon: FileText,
   label: 'Evidence'
@@ -30,10 +24,6 @@ const navigationItems = [{
   path: '/cases',
   icon: FolderOpen,
   label: 'Cases'
-}, {
-  path: '/analytics',
-  icon: BarChart3,
-  label: 'Analytics'
 }];
 const adminItems = [{
   path: '/admin',
@@ -76,12 +66,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
             </span>}
           {navigationItems.map(item => <Link key={item.path} to={item.path} className={cn('nav-link', isActive(item.path) && 'active')}>
               <item.icon className="w-5 h-5 shrink-0" />
-              {!collapsed && <>
-                  <span className="flex-1">{item.label}</span>
-                  {item.badge && <Badge variant="destructive" className="h-5 min-w-5 px-1.5">
-                      {item.badge}
-                    </Badge>}
-                </>}
+              {!collapsed && <span className="flex-1">{item.label}</span>}
             </Link>)}
         </div>
 
@@ -107,9 +92,6 @@ export const Sidebar: React.FC<SidebarProps> = ({
             <div className="flex-1 min-w-0">
               <p className="text-sm font-medium text-sidebar-foreground truncate">
                 {user.name}
-              </p>
-              <p className="text-xs text-muted-foreground capitalize">
-                {user.role.replace('_', ' ')}
               </p>
             </div>
           </div>}
